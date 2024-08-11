@@ -25,13 +25,24 @@ File::~File()
 
 void File::Read()
 {
-    std::string line;
-    uint64_t row = 0;
-    
-    while (getline(_file, line))
-        _data->Push(line, row++);
-    
-    _data->SetStop(true);
+    try
+    {
+        std::string line;
+        uint64_t row = 0;
+        
+        while (getline(_file, line))
+            _data->Push(line, row++);
+        
+        _data->SetStop(true);
+    }
+    catch (const std::exception& exception)
+    {
+        std::cerr << exception.what() << std::endl;
+    }
+    catch (...)
+    {
+        std::cerr << "Неизвестная ошибка!" << std::endl;
+    }
 }
 
 std::shared_ptr<File::Data> File::GetData() const noexcept
