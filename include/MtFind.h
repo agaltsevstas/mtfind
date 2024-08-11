@@ -1,28 +1,18 @@
 #pragma once
 
-#include <string>
-#include <list>
-#include <mutex>
+#include "Queue.h"
 
-struct Result
-{
-    uint64_t row;
-    uint64_t column;
-    std::string match;
-};
+
+#include <string>
+#include <vector>
+
+
+class Result;
+using Data = Queue<std::pair<std::string, uint64_t>>;
+
 
 class MtFind
 {
 public:
-    MtFind(const std::string& iFileName, const std::string& iMask);
-    void Read();
-    void Print();
-    
-private:
-    void FindMatch(const std::string& str, uint64_t row);
-    
-    std::mutex _mutex;
-    std::string _fileName;
-    std::string _mask;
-    std::list<Result> _results;
+    std::vector<Result> CalculateResults(const std::string& iMask, const std::shared_ptr<Data>& iData);
 };

@@ -130,11 +130,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\File.cpp" />
+    <ClCompile Include="..\src\KMP.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MtFind.cpp" />
+    <ClCompile Include="..\src\Result.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\File.h" />
+    <ClInclude Include="..\include\KMP.h" />
     <ClInclude Include="..\include\MtFind.h" />
+    <ClInclude Include="..\include\Queue.h" />
+    <ClInclude Include="..\include\Result.h" />
     <ClInclude Include="..\include\ThreadPool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

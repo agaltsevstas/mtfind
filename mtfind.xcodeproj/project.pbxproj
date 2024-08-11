@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		80A33DAE2C2F4DFC007DF3EE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80A33DAA2C2F4DFC007DF3EE /* main.cpp */; };
 		80A33DB02C2F4DFC007DF3EE /* MtFind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80A33DAC2C2F4DFC007DF3EE /* MtFind.cpp */; };
+		80A33DB82C34858D007DF3EE /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80A33DB72C34858D007DF3EE /* File.cpp */; };
+		80B2D0892C58FA9C00701C50 /* Result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80B2D0882C58FA9C00701C50 /* Result.cpp */; };
+		80B2D08C2C5951AD00701C50 /* KMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80B2D08B2C5951AD00701C50 /* KMP.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,9 +29,16 @@
 /* Begin PBXFileReference section */
 		80A33D992C2EE46E007DF3EE /* mtfind */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mtfind; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A33DA72C2F4DFC007DF3EE /* MtFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MtFind.h; sourceTree = "<group>"; };
-		80A33DA82C2F4DFC007DF3EE /* ThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadPool.h; sourceTree = "<group>"; };
 		80A33DAA2C2F4DFC007DF3EE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		80A33DAC2C2F4DFC007DF3EE /* MtFind.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MtFind.cpp; sourceTree = "<group>"; };
+		80A33DB52C347DE8007DF3EE /* ThreadPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadPool.h; sourceTree = "<group>"; };
+		80A33DB62C348585007DF3EE /* File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
+		80A33DB72C34858D007DF3EE /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = File.cpp; sourceTree = "<group>"; };
+		80A33DB92C357662007DF3EE /* Queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		80B2D0872C58FA8C00701C50 /* Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
+		80B2D0882C58FA9C00701C50 /* Result.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Result.cpp; sourceTree = "<group>"; };
+		80B2D08A2C5951A000701C50 /* KMP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMP.h; sourceTree = "<group>"; };
+		80B2D08B2C5951AD00701C50 /* KMP.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KMP.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +72,12 @@
 		80A33DA92C2F4DFC007DF3EE /* include */ = {
 			isa = PBXGroup;
 			children = (
+				80A33DB92C357662007DF3EE /* Queue.h */,
+				80A33DB52C347DE8007DF3EE /* ThreadPool.h */,
+				80A33DB62C348585007DF3EE /* File.h */,
+				80B2D08A2C5951A000701C50 /* KMP.h */,
+				80B2D0872C58FA8C00701C50 /* Result.h */,
 				80A33DA72C2F4DFC007DF3EE /* MtFind.h */,
-				80A33DA82C2F4DFC007DF3EE /* ThreadPool.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -71,8 +85,11 @@
 		80A33DAD2C2F4DFC007DF3EE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				80A33DAA2C2F4DFC007DF3EE /* main.cpp */,
+				80A33DB72C34858D007DF3EE /* File.cpp */,
+				80B2D08B2C5951AD00701C50 /* KMP.cpp */,
+				80B2D0882C58FA9C00701C50 /* Result.cpp */,
 				80A33DAC2C2F4DFC007DF3EE /* MtFind.cpp */,
+				80A33DAA2C2F4DFC007DF3EE /* main.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -134,7 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A33DB82C34858D007DF3EE /* File.cpp in Sources */,
+				80B2D08C2C5951AD00701C50 /* KMP.cpp in Sources */,
 				80A33DAE2C2F4DFC007DF3EE /* main.cpp in Sources */,
+				80B2D0892C58FA9C00701C50 /* Result.cpp in Sources */,
 				80A33DB02C2F4DFC007DF3EE /* MtFind.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
