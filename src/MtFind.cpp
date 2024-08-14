@@ -28,21 +28,10 @@ public:
         std::vector<Result> results;
         
         // Можно было сделать параллельную обработку
-        try
+        while (!_data->Empty())
         {
-            while (!_data->Empty())
-            {
-                auto [str, row] = _data->Pop();
-                pool.AddTask(std::bind(&KMP::Search, std::ref(_kmp), std::move(str), row, ref(results)));
-            }
-        }
-        catch (const std::exception& exception)
-        {
-            std::cerr << "Исключение: " << exception.what() << ", поток: " << std::this_thread::get_id() << std::endl;
-        }
-        catch (...)
-        {
-            std::cerr << "Неизвестная ошибка! Поток: " << std::this_thread::get_id() << std::endl;
+            auto [str, row] = _data->Pop();
+            pool.AddTask(std::bind(&KMP::Search, std::ref(_kmp), std::move(str), row, ref(results)));
         }
         
         std::sort(results.begin(), results.end());
