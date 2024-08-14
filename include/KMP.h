@@ -35,7 +35,7 @@ public:
     
     // Time: O(n+m), где n — длина строки, m — длина подстроки,
     // Memory: O(m)
-    void Search(const std::string str, uint64_t row, std::vector<Result>& results); // делаем копирование строки для многопоточности
+    void Search(const std::string& str, uint64_t row, std::vector<Result>& results);
     
 private:
     const std::string _mask;

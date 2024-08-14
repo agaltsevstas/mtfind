@@ -9,11 +9,11 @@
 #include <memory>
 
 
-class KMPDecorator : public KMP
+class KMPDecorator
 {
 public:
     KMPDecorator(const std::string& mask, const std::shared_ptr<Data>& data):
-    KMP(mask),
+    _kmp(mask),
     _data([&data]
     {
         if (!data)
@@ -24,16 +24,25 @@ public:
     
     std::vector<Result> CalculateResults()
     {
-        CalculateLPS();
         ThreadPool pool;
-        
         std::vector<Result> results;
         
         // Можно было сделать параллельную обработку
-        while (!_data->Empty())
+        try
         {
-            const auto& [str, row] = _data->Pop();
-            pool.AddTask(std::bind(&KMP::Search, this, str, row, std::ref(results)));
+            while (!_data->Empty())
+            {
+                auto [str, row] = _data->Pop();
+                pool.AddTask(std::bind(&KMP::Search, std::ref(_kmp), std::move(str), row, ref(results)));
+            }
+        }
+        catch (const std::exception& exception)
+        {
+            std::cerr << "Исключение: " << exception.what() << ", поток: " << std::this_thread::get_id() << std::endl;
+        }
+        catch (...)
+        {
+            std::cerr << "Неизвестная ошибка! Поток: " << std::this_thread::get_id() << std::endl;
         }
         
         std::sort(results.begin(), results.end());
@@ -41,6 +50,7 @@ public:
     }
     
 private:
+    KMP _kmp;
     const std::shared_ptr<Data> _data;
 };
 

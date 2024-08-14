@@ -10,7 +10,7 @@
 KMP::KMP(const std::string& mask):
 _mask(mask)
 {
-    
+    CalculateLPS();
 }
 
 void KMP::CalculateLPS()
@@ -44,7 +44,7 @@ void KMP::CalculateLPS()
     }
 }
 
-void KMP::Search(const std::string str, uint64_t row, std::vector<Result>& results)
+void KMP::Search(const std::string& str, uint64_t row, std::vector<Result>& results)
 {
     try
     {

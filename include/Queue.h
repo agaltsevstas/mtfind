@@ -25,7 +25,7 @@ public:
     {
         std::unique_lock lock(_mutex);
         _cv.wait(lock, [this]() { return _count >= std::thread::hardware_concurrency() || _stop; }); // hardware_concurrency выдает у меня 8 потоков
-        T item = _queue.front();
+        T item = std::move(_queue.front());
         _queue.pop();
         --_count;
         return item;
