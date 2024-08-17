@@ -26,23 +26,27 @@ public:
     {
         ThreadPool pool;
         
-        std::vector<std::future<std::vector<Result>>> future_results;
+        std::vector<std::pair<std::future<std::vector<Result>>, uint64_t>> future_results;
         // Можно было сделать параллельную обработку
         while (!_data->Empty())
         {
             auto [str, row] = _data->Pop();
-            auto future_result = pool.AddTask(&KMP::Search, std::ref(_kmp), std::move(str), row);
+            auto future_result = pool.AddTask(&KMP::Search, std::ref(_kmp), std::move(str));
             
-            future_results.emplace_back(std::move(future_result));
+            future_results.emplace_back(std::move(future_result), row);
         }
         
         std::vector<Result> results;
         try
         {
-            for (auto& future_result : future_results)
+            for (auto& [future_result, row] : future_results)
             {
                 auto result = future_result.get();
-                results.insert(results.end(), std::make_move_iterator(result.begin()), std::make_move_iterator(result.end()));
+                for (auto& r : result)
+                {
+                    r._row = row + 1u;
+                    results.emplace_back(std::move(r));
+                }
             }
         }
         catch (const std::exception& exception)

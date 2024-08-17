@@ -35,7 +35,7 @@ public:
     
     // Time: O(n+m), где n — длина строки, m — длина подстроки,
     // Memory: O(m)
-    std::vector<Result> Search(const std::string& str, uint64_t row);
+    std::vector<Result> Search(const std::string& str);
     
 private:
     const std::string _mask;

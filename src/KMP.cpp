@@ -44,7 +44,7 @@ void KMP::CalculateLPS()
     }
 }
 
-std::vector<Result> KMP::Search(const std::string& str, uint64_t row)
+std::vector<Result> KMP::Search(const std::string& str)
 {
     std::vector<Result> results;
     
@@ -64,7 +64,8 @@ std::vector<Result> KMP::Search(const std::string& str, uint64_t row)
  
         if (mask_index == mask_size)
         {
-            results.emplace_back(row + 1u, str_index - mask_index + 1u, str.substr(str_index - mask_index, _mask.length()));
+            Result result = {._column = str_index - mask_index + 1u, ._match = str.substr(str_index - mask_index, _mask.length())};
+            results.emplace_back(std::move(result));
             mask_index = _lps[mask_index - 1];
         }
         else if ((str_index < str_size) && (_mask[mask_index] != str[str_index]) && (_mask[mask_index] != '?'))
