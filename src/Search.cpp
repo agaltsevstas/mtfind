@@ -1,5 +1,5 @@
-#include "KMP.h"
-#include "MtFind.h"
+﻿#include "KMP.h"
+#include "Search.h"
 #include "Queue.h"
 #include "Result.h"
 #include "ThreadPool.h"
@@ -22,7 +22,7 @@ public:
     }())
     {}
     
-    std::vector<Result> CalculateResults()
+    std::vector<Result> SearchResults()
     {
         ThreadPool pool;
         
@@ -68,7 +68,7 @@ private:
 };
 
 
-std::vector<Result> MtFind::CalculateResults(const std::string& mask, const std::shared_ptr<Data>& data)
+std::vector<Result> Search::SearchResults(const std::string& mask, const std::shared_ptr<Data>& data)
 {
-    return KMPDecorator(mask, data).CalculateResults();
+    return KMPDecorator(mask, data).SearchResults();
 }

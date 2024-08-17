@@ -18,7 +18,7 @@
     <ClCompile Include="..\src\main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\MtFind.cpp">
+    <ClCompile Include="..\src\Search.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="..\src\File.cpp">
@@ -32,7 +32,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\MtFind.h">
+    <ClInclude Include="..\include\Search.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="..\include\ThreadPool.h">
@@ -48,6 +48,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Result.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Forward.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

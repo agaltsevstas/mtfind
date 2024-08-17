@@ -4,7 +4,6 @@
 
 struct Result
 {
-public:
     bool operator<(const Result& other) const noexcept;
     friend std::ostream& operator<<(std::ostream &os, const Result& other);
     

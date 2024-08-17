@@ -45,7 +45,7 @@ void File::Read()
     }
 }
 
-std::shared_ptr<File::Data> File::GetData() const noexcept
+std::shared_ptr<Data> File::GetData() const noexcept
 {
     return _data;
 }

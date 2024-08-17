@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Queue.h"
+#include "Forward.h"
+
 
 #include <fstream>
 #include <string>
@@ -9,7 +10,6 @@
 
 class File
 {
-    using Data = Queue<std::pair<std::string, uint64_t>>;
 public:
     File(const std::string& iFileName);
     ~File();

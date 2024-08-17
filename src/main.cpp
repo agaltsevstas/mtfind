@@ -1,5 +1,5 @@
 #include "File.h"
-#include "MtFind.h"
+#include "Search.h"
 #include "Result.h"
 
 #include <iostream>
@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
             case 2: throw std::runtime_error("Отсутствует файл и маска");
         }
         File file(argv[1]);
-        const auto results = MtFind().CalculateResults(argv[2], file.GetData());
+        const auto results = Search().SearchResults(argv[2], file.GetData());
         
         std::cout << results.size() << std::endl;
         for (const auto& result : results)

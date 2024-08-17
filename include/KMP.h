@@ -1,15 +1,16 @@
 #pragma once
 
-#include "Queue.h"
 
 #include <memory>
 #include <mutex>
+#include <vector>
 
 
-class Result;
+struct Result;
 
 
 /*
+ Statefull класс
  Алгоритм Кнута — Морриса — Пратта (KMP)
  Time: O(n+m) - для худшего и лучшего случаев, где n — длина строки, m — длина подстроки.
  Memory: O(m), где m — длина подстроки.
