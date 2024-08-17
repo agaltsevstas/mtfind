@@ -44,48 +44,37 @@ void KMP::CalculateLPS()
     }
 }
 
-void KMP::Search(const std::string& str, uint64_t row, std::vector<Result>& results)
+std::vector<Result> KMP::Search(const std::string& str, uint64_t row)
 {
-    try
+    std::vector<Result> results;
+    
+    uint64_t str_index = 0;
+    uint64_t mask_index = 0;
+    
+    uint64_t str_size = str.size();
+    uint64_t mask_size = _mask.size();
+    
+    while ((str_size - str_index) >= (mask_size - mask_index))
     {
-        uint64_t str_index = 0;
-        uint64_t mask_index = 0;
-        
-        uint64_t str_size = str.size();
-        uint64_t mask_size = _mask.size();
-        
-        while ((str_size - str_index) >= (mask_size - mask_index))
+        if (_mask[mask_index] == '?' || _mask[mask_index] == str[str_index])
         {
-            if (_mask[mask_index] == '?' || _mask[mask_index] == str[str_index])
-            {
-                ++mask_index;
-                ++str_index;
-            }
-     
-            if (mask_index == mask_size)
-            {
-                {
-                    std::unique_lock lock(_mutex);
-                    results.emplace_back(row + 1u, str_index - mask_index + 1u, str.substr(str_index - mask_index, _mask.length()));
-                }
-                
+            ++mask_index;
+            ++str_index;
+        }
+ 
+        if (mask_index == mask_size)
+        {
+            results.emplace_back(row + 1u, str_index - mask_index + 1u, str.substr(str_index - mask_index, _mask.length()));
+            mask_index = _lps[mask_index - 1];
+        }
+        else if ((str_index < str_size) && (_mask[mask_index] != str[str_index]) && (_mask[mask_index] != '?'))
+        {
+            if (mask_index != 0)
                 mask_index = _lps[mask_index - 1];
-            }
-            else if ((str_index < str_size) && (_mask[mask_index] != str[str_index]) && (_mask[mask_index] != '?'))
-            {
-                if (mask_index != 0)
-                    mask_index = _lps[mask_index - 1];
-                else
-                    ++str_index;
-            }
+            else
+                ++str_index;
         }
     }
-    catch (const std::exception& exception)
-    {
-        std::cerr << "Исключение: " << exception.what() << ", поток: " << std::this_thread::get_id() << std::endl;
-    }
-    catch (...)
-    {
-        std::cerr << "Неизвестная ошибка! Поток: " << std::this_thread::get_id() << std::endl;
-    }
+    
+    return results;
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cassert>
+#include <future>
 #include <functional>
 #include <mutex>
 #include <queue>
@@ -49,14 +51,28 @@ public:
             thread.join();
     }
   
-    void AddTask(std::function<void()> task)
+    template<class TFunction, class... TArgs>
+    auto AddTask(TFunction&& function, TArgs&&... args) -> std::future<typename std::invoke_result_t<TFunction, TArgs...>>
     {
+        using Result = typename std::invoke_result<TFunction, TArgs...>::type;
+
+        auto task = std::make_shared<std::packaged_task<Result()>>
+        (
+            std::bind(std::forward<TFunction>(function), std::forward<TArgs>(args)...)
+        );
+        
+        std::future<Result> result = task->get_future();
         {
             std::unique_lock lock(_mutex);
-            _tasks.emplace(std::move(task));
+            assert(!_stop);
+            _tasks.emplace([task]()
+            {
+                return (*task)();
+            });
         }
         
         _cv.notify_one();
+        return result;
     }
   
 private:

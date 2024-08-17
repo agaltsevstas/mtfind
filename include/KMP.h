@@ -35,10 +35,9 @@ public:
     
     // Time: O(n+m), где n — длина строки, m — длина подстроки,
     // Memory: O(m)
-    void Search(const std::string& str, uint64_t row, std::vector<Result>& results);
+    std::vector<Result> Search(const std::string& str, uint64_t row);
     
 private:
     const std::string _mask;
-    std::mutex _mutex;
     std::vector<uint64_t> _lps; // Longest prefix-suffix
 };
