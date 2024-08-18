@@ -14,7 +14,10 @@ public:
     File(const std::string& iFileName);
     ~File();
     
-    std::shared_ptr<Data> GetData() const noexcept;
+    inline std::shared_ptr<Data> GetData() const noexcept
+    {
+        return _data;
+    }
     
 private:
     void Read();

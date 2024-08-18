@@ -44,8 +44,3 @@ void File::Read()
         std::cerr << "Неизвестная ошибка!" << std::endl;
     }
 }
-
-std::shared_ptr<Data> File::GetData() const noexcept
-{
-    return _data;
-}

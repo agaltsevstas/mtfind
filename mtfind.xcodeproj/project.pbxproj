@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		80A33DAE2C2F4DFC007DF3EE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80A33DAA2C2F4DFC007DF3EE /* main.cpp */; };
 		80A33DB82C34858D007DF3EE /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80A33DB72C34858D007DF3EE /* File.cpp */; };
-		80B2D0892C58FA9C00701C50 /* Result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80B2D0882C58FA9C00701C50 /* Result.cpp */; };
 		80B2D08C2C5951AD00701C50 /* KMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80B2D08B2C5951AD00701C50 /* KMP.cpp */; };
 		80E486C52C7120B000F36767 /* Search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80E486C42C7120B000F36767 /* Search.cpp */; };
 /* End PBXBuildFile section */
@@ -34,7 +33,6 @@
 		80A33DB72C34858D007DF3EE /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = File.cpp; sourceTree = "<group>"; };
 		80A33DB92C357662007DF3EE /* Queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		80B2D0872C58FA8C00701C50 /* Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
-		80B2D0882C58FA9C00701C50 /* Result.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Result.cpp; sourceTree = "<group>"; };
 		80B2D08A2C5951A000701C50 /* KMP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMP.h; sourceTree = "<group>"; };
 		80B2D08B2C5951AD00701C50 /* KMP.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KMP.cpp; sourceTree = "<group>"; };
 		80E486C32C7120A200F36767 /* Forward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Forward.h; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 			children = (
 				80A33DB72C34858D007DF3EE /* File.cpp */,
 				80B2D08B2C5951AD00701C50 /* KMP.cpp */,
-				80B2D0882C58FA9C00701C50 /* Result.cpp */,
 				80E486C42C7120B000F36767 /* Search.cpp */,
 				80A33DAA2C2F4DFC007DF3EE /* main.cpp */,
 			);
@@ -157,7 +154,6 @@
 				80B2D08C2C5951AD00701C50 /* KMP.cpp in Sources */,
 				80A33DAE2C2F4DFC007DF3EE /* main.cpp in Sources */,
 				80E486C52C7120B000F36767 /* Search.cpp in Sources */,
-				80B2D0892C58FA9C00701C50 /* Result.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -134,7 +134,6 @@
     <ClCompile Include="..\src\KMP.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Search.cpp" />
-    <ClCompile Include="..\src\Result.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\File.h" />
