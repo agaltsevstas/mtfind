@@ -11,7 +11,7 @@
 struct Result;
 
 
-// Stateless класс - подходящий для расширения
+// Stateless класс, который в дальнейшем можно расширять
 class Search
 {
 public:

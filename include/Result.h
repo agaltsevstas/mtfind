@@ -2,6 +2,7 @@
 
 #include <string>
 
+
 struct Result
 {
     bool operator<(const Result& other) const noexcept;

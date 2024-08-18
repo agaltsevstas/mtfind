@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include <memory>
-#include <mutex>
+#include <string>
 #include <vector>
 
 
@@ -10,7 +9,7 @@ struct Result;
 
 
 /*
- Statefull класс
+ Statefull класс из-за рассчета маски
  Алгоритм Кнута — Морриса — Пратта (KMP)
  Time: O(n+m) - для худшего и лучшего случаев, где n — длина строки, m — длина подстроки.
  Memory: O(m), где m — длина подстроки.
