@@ -1,11 +1,9 @@
 #pragma once
 
 
+#include <functional>
 #include <string>
 #include <vector>
-
-
-struct Result;
 
 
 /*
@@ -21,6 +19,7 @@ struct Result;
  */
 class KMP
 {
+    using Handle = std::function<void(uint64_t column, std::string&& match)>;
 public:
     KMP(const std::string& mask);
     
@@ -35,7 +34,7 @@ public:
     
     // Time: O(n+m), где n — длина строки, m — длина подстроки,
     // Memory: O(m)
-    std::vector<Result> Search(const std::string& str);
+    void Search(const std::string& str, const Handle& handle = nullptr);
     
 private:
     const std::string _mask;

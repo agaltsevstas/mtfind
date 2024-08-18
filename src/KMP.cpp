@@ -1,5 +1,4 @@
 #include "KMP.h"
-#include "Result.h"
 
 
 #include <iostream>
@@ -44,10 +43,8 @@ void KMP::CalculateLPS()
     }
 }
 
-std::vector<Result> KMP::Search(const std::string& str)
+void KMP::Search(const std::string& str, const Handle& handle)
 {
-    std::vector<Result> results;
-    
     uint64_t str_index = 0;
     uint64_t mask_index = 0;
     
@@ -64,8 +61,9 @@ std::vector<Result> KMP::Search(const std::string& str)
  
         if (mask_index == mask_size)
         {
-            Result result = {._column = str_index - mask_index + 1u, ._match = str.substr(str_index - mask_index, _mask.length())};
-            results.emplace_back(std::move(result));
+            if (handle)
+                handle(str_index - mask_index + 1u, str.substr(str_index - mask_index, _mask.length()));
+            
             mask_index = _lps[mask_index - 1];
         }
         else if ((str_index < str_size) && (_mask[mask_index] != str[str_index]) && (_mask[mask_index] != '?'))
@@ -76,6 +74,4 @@ std::vector<Result> KMP::Search(const std::string& str)
                 ++str_index;
         }
     }
-    
-    return results;
 }

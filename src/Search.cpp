@@ -1,4 +1,4 @@
-﻿#include "KMP.h"
+#include "KMP.h"
 #include "Search.h"
 #include "Queue.h"
 #include "Result.h"
@@ -26,28 +26,27 @@ public:
     {
         ThreadPool pool;
         
-        std::vector<std::pair<std::future<std::vector<Result>>, uint64_t>> future_results;
+        std::vector<std::future<void>> futures;
+        std::vector<Result> results;
+        std::mutex mutex;
+        
         // Можно было сделать параллельную обработку
         while (!_data->Empty())
         {
             auto [str, row] = _data->Pop();
-            auto future_result = pool.AddTask(&KMP::Search, std::ref(_kmp), std::move(str));
+            auto future = pool.AddTask(&KMP::Search, std::ref(_kmp), std::move(str), [&mutex, &results, row](uint64_t column, std::string&& match)
+            {
+                std::lock_guard lock(mutex);
+                results.emplace_back(row + 1u, column, std::move(match));
+            });
             
-            future_results.emplace_back(std::move(future_result), row);
+            futures.emplace_back(std::move(future));
         }
         
-        std::vector<Result> results;
         try
         {
-            for (auto& [future_result, row] : future_results)
-            {
-                auto result = future_result.get();
-                for (auto& r : result)
-                {
-                    r._row = row + 1u;
-                    results.emplace_back(std::move(r));
-                }
-            }
+            for (auto& future : futures)
+                future.get();
         }
         catch (const std::exception& exception)
         {
